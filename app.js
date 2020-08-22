@@ -23,7 +23,8 @@ const articleSchema = {
 const Article = mongoose.model("Article", articleSchema);
 
 
-app.route("/articles").get(function(req, res){
+app.route("/articles")
+.get(function(req, res){
     //cauta in baza de date (mangoDB)
     Article.find({}, function(err, results){
         if(!err){
@@ -33,7 +34,8 @@ app.route("/articles").get(function(req, res){
         }
         
     })
-}).post(function(req,res){
+})
+.post(function(req,res){
    
     // salveaza datele in baza de date(mongoDB)
     const art = new Article({
@@ -49,7 +51,8 @@ app.route("/articles").get(function(req, res){
         }
     })
     // ===========================================
-}).delete(function(req, res){
+})
+.delete(function(req, res){
     Article.deleteMany(function(err){
         if (!err){
             res.send("successfullt delete")
