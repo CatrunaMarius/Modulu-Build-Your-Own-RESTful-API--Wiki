@@ -22,7 +22,9 @@ const articleSchema = {
 
 const Article = mongoose.model("Article", articleSchema);
 
-app.get("/articles", function(req, res){
+
+app.route("/articles").get(function(req, res){
+    //cauta in baza de date (mangoDB)
     Article.find({}, function(err, results){
         if(!err){
             res.send(results)
@@ -31,9 +33,7 @@ app.get("/articles", function(req, res){
         }
         
     })
-})
-
-app.post("/articles", function(req,res){
+}).post(function(req,res){
    
     // salveaza datele in baza de date(mongoDB)
     const art = new Article({
@@ -49,9 +49,7 @@ app.post("/articles", function(req,res){
         }
     })
     // ===========================================
-})
-
-app.delete("/articles", function(req, res){
+}).delete(function(req, res){
     Article.deleteMany(function(err){
         if (!err){
             res.send("successfullt delete")
@@ -60,6 +58,8 @@ app.delete("/articles", function(req, res){
         }
     })
 })
+
+
 
 app.listen(9000, function() {
   console.log("Server started on port 3000");
